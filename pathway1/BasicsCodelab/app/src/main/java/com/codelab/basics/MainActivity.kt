@@ -60,6 +60,16 @@ private fun Greetings(names: List<String> = List(1000) { "$it" } ) {
 
 @Composable
 fun Greeting(name: String) {
+    Card(
+        backgroundColor = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        CardContent(name)
+    }
+}
+
+@Composable
+fun CardContent(name: String) {
     var expanded by rememberSaveable { mutableStateOf(false) }
 
     val extraPadding by animateDpAsState(
@@ -70,37 +80,32 @@ fun Greeting(name: String) {
         )
     )
 
-    Surface(
-        color = MaterialTheme.colors.primary,
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp)
-    ) {
-        Row(modifier = Modifier.padding(24.dp)) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
-            ) {
-                // Text(text = "Hello,\n$name")
-                Text(text = "Hello,")
-                Text(
-                    text = name, style = MaterialTheme.typography.h4.copy(
-                        fontWeight = FontWeight.ExtraBold
-                    )
+    Row(modifier = Modifier.padding(24.dp)) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+        ) {
+            // Text(text = "Hello,\n$name")
+            Text(text = "Hello,")
+            Text(
+                text = name, style = MaterialTheme.typography.h4.copy(
+                    fontWeight = FontWeight.ExtraBold
                 )
-            }
+            )
+        }
 
-            IconButton(onClick = { expanded = !expanded }) {
-                if (expanded) {
-                    Icon(
-                        imageVector = Icons.Filled.ExpandLess,
-                        contentDescription = stringResource(R.string.show_less)
-                    )
-                } else {
-                    Icon(
-                        imageVector = Icons.Filled.ExpandMore,
-                        contentDescription = stringResource(R.string.show_more)
-                    )
-                }
+        IconButton(onClick = { expanded = !expanded }) {
+            if (expanded) {
+                Icon(
+                    imageVector = Icons.Filled.ExpandLess,
+                    contentDescription = stringResource(R.string.show_less)
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Filled.ExpandMore,
+                    contentDescription = stringResource(R.string.show_more)
+                )
             }
         }
     }
