@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
@@ -18,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -85,10 +89,18 @@ fun Greeting(name: String) {
                 )
             }
 
-            OutlinedButton(
-                onClick = { expanded = !expanded }
-            ) {
-                Text(text = if (expanded) "Show less" else "Show more")
+            IconButton(onClick = { expanded = !expanded }) {
+                if (expanded) {
+                    Icon(
+                        imageVector = Icons.Filled.ExpandLess,
+                        contentDescription = stringResource(R.string.show_less)
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Filled.ExpandMore,
+                        contentDescription = stringResource(R.string.show_more)
+                    )
+                }
             }
         }
     }
