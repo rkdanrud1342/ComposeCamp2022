@@ -9,8 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,21 +53,4 @@ fun WellnessTaskItem(
             Icon(Icons.Filled.Close, contentDescription = "close")
         }
     }
-}
-
-@Composable
-fun WellnessTaskItem(
-    taskName: String,
-    onClose: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-
-    WellnessTaskItem(
-        taskName = taskName,
-        checked = checkedState,
-        onCheckedChange = { checkedState = it },
-        onClose = onClose,
-        modifier = modifier
-    )
 }
